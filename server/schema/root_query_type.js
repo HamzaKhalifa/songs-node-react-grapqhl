@@ -25,8 +25,14 @@ const RootQuery = new GraphQLObjectType({
     lyric: {
       type: LyricType,
       args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(parnetValue, { id }) {
+      resolve(parentValue, { id }) {
         return Lyric.findById(id);
+      }
+    },
+    lyrics: {
+      type: LyricType,
+      resolve() {
+        return Lyric.find({});
       }
     }
   })
